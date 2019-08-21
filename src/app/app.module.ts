@@ -12,6 +12,7 @@ import { PostCreateComponent } from './post/post-create/post-create.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { PostListComponent } from './post/post-list/post-list.component';
+import { PostService } from './post/post.service';
 
 
 @NgModule({
@@ -31,7 +32,9 @@ import { PostListComponent } from './post/post-list/post-list.component';
     MatToolbarModule,
     MatExpansionModule
   ],
-  providers: [],
+  providers: [
+    PostService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
