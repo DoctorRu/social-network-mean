@@ -23,7 +23,7 @@ export class PostCreateComponent {
       return;
     }
 
-    this.postService.addPosts(form.value.title, form.value.content);
+    this.postService.addPosts(null, form.value.title, form.value.content);
     form.resetForm();
   }
 }
