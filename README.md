@@ -31,3 +31,6 @@ angular.json
 
 # Running node server
 $ node server.js
+or
+$ npm run start:server // check the scripts in package.json
+
