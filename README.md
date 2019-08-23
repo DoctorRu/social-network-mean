@@ -1,4 +1,6 @@
-# Mean
+
+# Simple MEAN project
+Just a simple author / post project using MEAN architecture
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.0.
 
@@ -26,10 +28,10 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-# Theme
-angular.json
+## Theme
+Theme link in angular.json
 
-# Running node server
+## Running node server
 $ node server.js
 or
 $ npm run start:server // check the scripts in package.json

@@ -9,7 +9,7 @@ const passwords = require('./secret');
 const Post = require('./models/post');
 
 // Other
-const databaseUrl = "mongodb+srv://dbu-social:" + passwords.databasePassword + "@social-uhcyc.mongodb.net/test?retryWrites=true&w=majority";
+const databaseUrl = "mongodb+srv://dbu-social:" + passwords.databasePassword + "@social-uhcyc.mongodb.net/social-mean?retryWrites=true&w=majority";
 mongoose.connect(databaseUrl, { useNewUrlParser: true })
   .then( () => {
     console.log('Connected to the database')
@@ -38,43 +38,43 @@ app.use((req, res, next) => {
 });
 
 // VERBS
+// POST
 app.post('/api/posts', (req, res, next) => {
+  console.log('Call POST /api/posts ', req.body);
+
   const post = new Post({
     title: req.body.title,
     content: req.body.content
   });
 
-  console.log('POST call', post);
-  res.status(201).json({
-    message: 'Post added successfully'
-  })
+  post.save()
+    .then( doc => {
+      console.log('Post saved')
+      res.status(201).json({
+        message: 'Post added successfully'
+      })
+      })
+    .catch( err => {
+      console.log('Post save error: ', err)
+    })
 })
 
+// GET
 app.get('/api/posts', (req, res, next) => {
-  const posts = [
-    {
-      id: '1',
-      title: 'Backend - Post 1 title',
-      content: 'Backend - Post 1 content'
-    },
-    {
-      id: '2',
-      title: 'Backend - Post 2 title',
-      content: 'Backend - Post 2 content'
-    },
-    {
-      id: '3',
-      title: 'Backend - Post 3 title',
-      content: 'Backend - Post 3 content'
-    }
-  ]
-  res.status(200).json(
-    {
-      message: 'Post fechted succesfully',
-      posts: posts
-    }
-  );
 
+  Post.find()
+    .then( posts => {
+      console.log('Fechted posts: ', posts);
+      res.status(200).json(
+        {
+          message: 'Post fechted succesfully',
+          posts: posts
+        }
+      );
+    })
+    .catch( err => {
+      console.log('Error fetching posts', err);
+    });
 })
 
 module.exports = app;
