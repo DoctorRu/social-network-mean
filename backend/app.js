@@ -48,12 +48,12 @@ app.post('/api/posts', (req, res, next) => {
   });
 
   post.save()
-    .then( doc => {
-      console.log('Post saved')
+    .then( result => {
+      console.log('Post saved', result);
       res.status(201).json({
         message: 'Post added successfully'
-      })
-      })
+      });
+    })
     .catch( err => {
       console.log('Post save error: ', err)
     })
